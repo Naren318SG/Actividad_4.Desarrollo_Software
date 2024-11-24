@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Incidentes</title>
+    <style>
+        /* Estilos generales */
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            color: #343a40;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin: 50px auto;
+            max-width: 800px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .table th, .table td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        .table th {
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #f2f2f2;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            display: inline-block;
+            margin: 2px;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+            color: #343a40;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Incidentes</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Descripción</th>
+                    <th>Severidad</th>
+                    <th>Costo</th>
+                    <th>Fecha Incidente</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="incidente : ${incidentes}">
+                    <td th:text="${incidente.id}"></td>
+                    <td th:text="${incidente.descripcion}"></td>
+                    <td th:text="${incidente.severidad}"></td>
+                    <td th:text="${incidente.costo}"></td>
+                    <td th:text="${incidente.fechaIncidente}"></td>
+                    <td>
+                        <a th:href="@{/incidentes/editar/{id}(id=${incidente.id})}" class="btn btn-warning">Editar</a>
+                        <a th:href="@{/incidentes/eliminar/{id}(id=${incidente.id})}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="/incidentes/nuevo" class="btn btn-primary">Nuevo Incidente</a>
+    </div>
+</body>
+</html>
