@@ -5,7 +5,7 @@
     <style>
         /* Estilos generales */
         body {
-            background-color: #f8f9fa;
+            background-color: #7B68EE;
             font-family: Arial, sans-serif;
             color: #343a40;
             margin: 0;
@@ -14,21 +14,45 @@
 
         .container {
             margin: 50px auto;
-            max-width: 800px;
+            max-width: 1000px;
+            display: flex; /* Flexbox para alinear elementos */
+            align-items: center; /* Alinear elementos al centro */
+            gap: 20px; /* Espacio entre la imagen y la tabla */
         }
 
         h1 {
             text-align: center;
             margin-bottom: 20px;
+            width: 100%; /* Para que el título se vea centrado en todo el contenedor */
+        }
+
+        .image-container {
+            flex: 1; /* La imagen ocupará 1 fracción del espacio */
+            display: flex;
+            justify-content: center;
+            background-color:#7B68EE;
+        }
+
+        .incident-img {
+            width: 100%; /* Ajusta el tamaño a la pantalla */
+            max-width: 300px; /* Limita el tamaño máximo de la imagen */
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .table-container {
+            flex: 2; /* La tabla ocupará 2 fracciones del espacio */
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
         }
 
         .table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
             background-color: #fff;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .table th, .table td {
@@ -69,6 +93,16 @@
             color: #fff;
         }
 
+        .btn-success {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-info {
+            background-color: #17a2b8;
+            color: white;
+        }
+
         .btn:hover {
             opacity: 0.9;
         }
@@ -76,33 +110,44 @@
 </head>
 <body>
     <div class="container">
-        <h1>Lista de Incidentes</h1>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Descripción</th>
-                    <th>Severidad</th>
-                    <th>Costo</th>
-                    <th>Fecha Incidente</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="incidente : ${incidentes}">
-                    <td th:text="${incidente.id}"></td>
-                    <td th:text="${incidente.descripcion}"></td>
-                    <td th:text="${incidente.severidad}"></td>
-                    <td th:text="${incidente.costo}"></td>
-                    <td th:text="${incidente.fechaIncidente}"></td>
-                    <td>
-                        <a th:href="@{/incidentes/editar/{id}(id=${incidente.id})}" class="btn btn-warning">Editar</a>
-                        <a th:href="@{/incidentes/eliminar/{id}(id=${incidente.id})}" class="btn btn-danger">Eliminar</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <a href="/incidentes/nuevo" class="btn btn-primary">Nuevo Incidente</a>
+        <div class="image-container">
+            <!-- Imagen al lado de la lista -->
+            <img src="https://www.manageengine.com/products/service-desk/it-incident-management/images/incident-management-checklist.png" alt="Incident Management Checklist" class="incident-img">
+        </div>
+
+        <div class="table-container">
+            <h1>Lista de Incidentes</h1>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Descripción</th>
+                        <th>Severidad</th>
+                        <th>Costo</th>
+                        <th>Fecha Incidente</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="incidente : ${incidentes}">
+                        <td th:text="${incidente.id}"></td>
+                        <td th:text="${incidente.descripcion}"></td>
+                        <td th:text="${incidente.severidad}"></td>
+                        <td th:text="${incidente.costo}"></td>
+                        <td th:text="${incidente.fechaIncidente}"></td>
+                        <td>
+                            <a th:href="@{/incidentes/editar/{id}(id=${incidente.id})}" class="btn btn-warning">Editar</a>
+                            <a th:href="@{/incidentes/eliminar/{id}(id=${incidente.id})}" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Botones al final -->
+            <a href="/incidentes/nuevo" class="btn btn-primary">Nuevo Incidente</a>
+            <a href="/" class="btn btn-success">Volver al Inicio</a>
+            <a href="/incidentes/reportes" class="btn btn-info">Ver Reportes</a>
+        </div>
     </div>
 </body>
 </html>

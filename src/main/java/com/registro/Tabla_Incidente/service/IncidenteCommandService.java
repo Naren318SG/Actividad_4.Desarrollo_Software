@@ -6,33 +6,26 @@ package com.registro.Tabla_Incidente.service;
 
 import com.registro.Tabla_Incidente.model.Incidente;
 import com.registro.Tabla_Incidente.repository.IncidenteRepository;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+        
+/**
+ *
+ * @author Estudiante
+ */
 @Service
-public class IncidenteService {
-
-    @Autowired
-
+public class IncidenteCommandService {
+      @Autowired
     private IncidenteRepository incidenteRepository;
 
-    public List<Incidente> listarTodas() {
-        return incidenteRepository.findAll();
-
-    }
-
-    public Incidente guardar(Incidente incidente) {
+    // Método para guardar un nuevo incidente o actualizar uno existente
+    public Incidente guardarIncidente(Incidente incidente) {
         return incidenteRepository.save(incidente);
-
     }
 
-    public Incidente obtenerPorId(Long id) {
-        return incidenteRepository.findById(id).orElse(null);
-    }
-
-    public void eliminar(Long id) {
+    // Método para eliminar un incidente por su ID
+    public void eliminarIncidente(Long id) {
         incidenteRepository.deleteById(id);
     }
-
 }

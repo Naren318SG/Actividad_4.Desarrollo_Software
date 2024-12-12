@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Formulario de Incidente</title>
+    <title>Nuevo Incidente</title>
     <style>
         /* Estilos generales */
         body {
-            background-color: #f8f9fa;
+            background-color: #6495ED;
             font-family: Arial, sans-serif;
             color: #343a40;
             margin: 0;
@@ -14,16 +14,38 @@
 
         .container {
             margin: 50px auto;
-            max-width: 600px;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            display: flex; /* Flexbox para alinear elementos */
+            align-items: center; /* Alinear elementos al centro */
+            gap: 20px; /* Espacio entre la imagen y el formulario */
         }
 
         h1 {
             text-align: center;
             margin-bottom: 20px;
+            width: 100%; /* Para que el título se vea centrado en todo el contenedor */
+        }
+
+        .image-container {
+            flex: 1; /* La imagen ocupará 1 fracción del espacio */
+            display: flex;
+            justify-content: center;
+            background-color:#6495ED;
+        }
+
+        .incident-img {
+            width: 100%; /* Ajusta el tamaño a la pantalla */
+            max-width: 300px; /* Limita el tamaño máximo de la imagen */
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container {
+            flex: 2; /* El formulario ocupará 2 fracciones del espacio */
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
         }
 
         .form-label {
@@ -69,27 +91,35 @@
 </head>
 <body>
     <div class="container">
-        <h1 th:text="${incidente.id == null} ? 'Nuevo Incidente' : 'Editar Incidente'"></h1>
-        <form th:action="@{/incidentes}" th:object="${incidente}" method="post">
-            <div>
-                <label for="descripcion" class="form-label">Descripción:</label>
-                <input type="text" th:field="*{descripcion}" class="form-control" id="descripcion" required>
-            </div>
-            <div>
-                <label for="severidad" class="form-label">Severidad:</label>
-                <input type="text" th:field="*{severidad}" class="form-control" id="severidad" required>
-            </div>
-            <div>
-                <label for="costo" class="form-label">Costo:</label>
-                <input type="text" th:field="*{costo}" class="form-control" id="costo" required>
-            </div>
-            <div>
-                <label for="fechaIncidente" class="form-label">Fecha Incidente:</label>
-                <input type="date" th:field="*{fechaIncidente}" class="form-control" id="fechaIncidente" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Guardar</button>
-        </form>
-        <a href="/incidentes/" class="btn btn-secondary">Volver a la lista</a>
+        <div class="image-container">
+            <!-- Imagen al lado del formulario -->
+            <img src="https://img.freepik.com/vector-gratis/agregar-ilustracion-concepto-archivos_114360-471.jpg" alt="Incident Management" class="incident-img">
+        </div>
+
+        <div class="form-container">
+            <h1 th:text="${incidente.id == null} ? 'Nuevo Incidente' : 'Editar Incidente'"></h1>
+            <form th:action="@{/incidentes/guardar}" th:object="${incidente}" method="post">
+                <input type="hidden" th:field="*{id}" />
+                <div>
+                    <label for="descripcion" class="form-label">Descripción:</label>
+                    <input type="text" th:field="*{descripcion}" class="form-control" id="descripcion" required>
+                </div>
+                <div>
+                    <label for="severidad" class="form-label">Severidad:</label>
+                    <input type="text" th:field="*{severidad}" class="form-control" id="severidad" required>
+                </div>
+                <div>
+                    <label for="costo" class="form-label">Costo:</label>
+                    <input type="text" th:field="*{costo}" class="form-control" id="costo" required>
+                </div>
+                <div>
+                    <label for="fechaIncidente" class="form-label">Fecha Incidente:</label>
+                    <input type="date" th:field="*{fechaIncidente}" class="form-control" id="fechaIncidente" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+            <a href="/incidentes/" class="btn btn-secondary">Volver lista</a>
+        </div>
     </div>
 </body>
 </html>

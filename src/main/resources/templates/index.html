@@ -1,79 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página de Inicio</title>
     <style>
+        /* Estilos generales */
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #343a40;
-            color: white;
+            background-color: #1E90FF; /* Color azul turquesa */
             font-family: Arial, sans-serif;
+            color: #343a40;
             margin: 0;
-            flex-direction: column;
+            padding: 0;
         }
 
         .container {
-            text-align: center;
+            margin: 50px auto;
+            max-width: 1000px;
+            display: flex; /* Flexbox para alinear elementos */
+            align-items: center; /* Alinear elementos al centro */
+            gap: 20px; /* Espacio entre la imagen y el contenido */
         }
 
         h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2em; /* Agrandar el tamaño del texto */
+            width: 100%; /* Para que el título se vea centrado en todo el contenedor */
         }
 
-        p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
+        .image-container {
+            flex: 1; /* La imagen ocupará 1 fracción del espacio */
+            display: flex;
+            justify-content: center;
+            background-color: #1E90FF; /* Mismo color de fondo */
+        }
+
+        .home-img {
+            width: 100%; /* Ajusta el tamaño a la pantalla */
+            max-width: 500px; /* Limita el tamaño máximo de la imagen */
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-container {
+            flex: 2; /* El contenido ocupará 2 fracciones del espacio */
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px; /* Aumenta el padding para más espacio */
+        }
+
+        .content {
+            text-align: center;
+            font-size: 1.2em; /* Agrandar el tamaño del texto */
         }
 
         .btn {
-            background-color: white;
-            color: #343a40;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            cursor: pointer;
-            border-radius: 0.25rem;
             text-decoration: none;
-            margin: 0.5rem;
+            padding: 12px 20px; /* Agrandar el tamaño de los botones */
+            border-radius: 4px;
+            font-size: 16px; /* Agrandar el tamaño del texto */
+            display: inline-block;
+            margin: 10px; /* Más espacio entre los botones */
+            cursor: pointer;
+            text-align: center;
         }
 
         .btn-primary {
             background-color: #007bff;
             color: white;
+            border: none;
         }
 
-        .btn-success {
-            background-color: #28a745;
+        .btn-secondary {
+            background-color: #6c757d;
             color: white;
+            border: none;
         }
 
         .btn:hover {
-            background-color: #e9ecef;
-            color: #343a40;
-        }
-
-        .image-container {
-            margin-bottom: 1rem;
+            opacity: 0.9;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="image-container">
-            <img src="https://www.manageengine.com/products/service-desk/it-incident-management/images/what-is-it-incident-management.png" alt="IT Incident Management" width="500">
+            <!-- Imagen al lado del contenido -->
+            <img src="https://www.manageengine.com/products/service-desk/it-incident-management/images/what-is-it-incident-management.png" alt="Incident Management" class="home-img">
         </div>
-        <h1>Bienvenido a la Página de Inicio</h1>
-        <p>Hola, aquí podras gestionar la información de los incidentes laborales.</p>
-        <a href="/incidentes/" class="btn btn-primary">Volver a la lista</a>
-        <a href="/incidentes/nuevo" class="btn btn-success">Nuevo incidente</a>
+
+        <div class="content-container">
+            <div class="content">
+                <h1>Bienvenido a la Gestión de Incidentes</h1>
+                <p>Esta es una aplicación para registrar, editar y visualizar incidentes de manera eficiente.</p>
+                <a href="/incidentes/" class="btn btn-primary">Ver Incidentes</a>
+                <a href="/incidentes/nuevo" class="btn btn-secondary">Nuevo Incidente</a>
+            </div>
+        </div>
     </div>
 </body>
 </html>
-
-
